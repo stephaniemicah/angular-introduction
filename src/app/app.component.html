@@ -11,3 +11,14 @@ Hello {{ title}}!
 <h2 [class.textColor]="redText">Title</h2>
 <button (click)="incrementCounter()">Increment</button>
 <p>Counter: {{ counter }}</p>
+
+<input [(ngModel)]="inputText" placeholder="Enter text"/>
+<p>You entered: {{ inputText }}</p>
+
+<div [ngClass]="classes">
+  {{ message }}
+</div>
+
+<div class="color-box" [ngStyle]="{ color: selectedColor }">
+  Box
+</div>
