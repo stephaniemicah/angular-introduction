@@ -2,20 +2,24 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { AppendPipe } from './pipes/append.pipe';
+import { MessagesService } from './services/messages.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule, AppendPipe],
+  imports: [RouterOutlet, FormsModule, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [MessagesService]
 })
 
 export class AppComponent {
-  title: string = 'Pipes';
+  messages: string[] = [];
 
-  today: number = Date.now();
+  constructor(private messagesService: MessagesService) {
+    this.messages = messagesService.getMessages();
+  }
 
-  currency: number = 1.3244;
+  title: string = 'Dependency Injection & Services';
+
 }
