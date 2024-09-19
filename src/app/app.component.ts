@@ -12,34 +12,13 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class AppComponent {
-  title: string = '1.Introduction';
-  myBtn: string = 'My Button';
-  counter: number = 0;
+  title: string = 'Structural Directives';
+  isLoggedIn: boolean = false;
+  username: string = 'Stephanie Micah';
 
-  //attribute binding
-  isDisabled: boolean = false;
-  angularImage: string = '../assets/angular16.jpg';
+  //loops
+  names: string[] = ['steph', 'micah', 'ali'];
 
-  //property binding
-  bgColor: string = 'red';
-  titleColor: string = 'white';
-  description: string = 'font-size: 30px; color: lightblue';
-
-  //event binding
-  incrementCounter() {
-    this.counter++;
-  }
-
-  //class binding
-  redText: boolean = true;
-
-  //two-way data binding
-  inputText: string = 'Initial value';
-
-  //ngClass
-  message: string = 'This is a dangerous message';
-  classes: string = 'danger text-size';
-
-  //ngStyle
-  selectedColor: string = 'white';
+  //switch
+  grade: string = 'B';
 }

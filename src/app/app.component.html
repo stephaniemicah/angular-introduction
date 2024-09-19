@@ -1,24 +1,17 @@
-Hello {{ title}}!
+<h1>{{ title }}</h1>
 
-<button type="button" [disabled]="isDisabled">{{ myBtn }}</button>
-<img alt="angular" width="100" height="100" [src]="angularImage"/>
+<!-- <div *ngIf="isLoggedIn">Welcome, {{ username }}</div>
+<div *ngIf="!isLoggedIn">Please login to view content</div> -->
 
-<div [style.backgroundColor]="bgColor">
-  <h2 [style.color]="titleColor">Title</h2>
-  <p [style]="description">Description</p>
-</div>
+<div *ngIf="isLoggedIn; else loggedOut">Welcome, {{ username }}</div>
+<ng-template #loggedOut>Please login</ng-template>
 
-<h2 [class.textColor]="redText">Title</h2>
-<button (click)="incrementCounter()">Increment</button>
-<p>Counter: {{ counter }}</p>
+<ul>
+  <li *ngFor="let name of names; let i = index"> {{ i }} {{ name }}</li>
+</ul>
 
-<input [(ngModel)]="inputText" placeholder="Enter text"/>
-<p>You entered: {{ inputText }}</p>
-
-<div [ngClass]="classes">
-  {{ message }}
-</div>
-
-<div class="color-box" [ngStyle]="{ color: selectedColor }">
-  Box
+<div [ngSwitch]="grade">
+  <p *ngSwitchCase="'A'">Excellent</p>
+  <p *ngSwitchCase="'B'">Good</p>
+  <p *ngSwitchDefault>Unknown</p>
 </div>
