@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { MessagesService } from './services/messages.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Post } from './interfaces/posts.interface';
+import { LatestPrices, OrderBook, Student } from './interfaces/data.interface';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ import { Post } from './interfaces/posts.interface';
 export class AppComponent implements OnInit {
   messages: string[] = [];
   posts: Post[] = [];
+  languages: Array<string> = [];
+  student: Student | null = null;
 
   constructor(private messagesService: MessagesService) {
     this.messages = messagesService.getMessages();
@@ -36,6 +39,28 @@ export class AppComponent implements OnInit {
       this.messagesService.getPosts().subscribe({
         next: (response: Post[]) => {this.posts = response;},
         error: (error) => {console.error(error);}
+      });
+
+      this.messagesService.getLanguages().subscribe({
+        next: (response: Array<string>) => {this.languages = response;},
+        error: (error) => {console.error(error);}
+      });
+
+      this.messagesService.getStudent().subscribe({
+        next: (response: Student) => {this.student = response;},
+        error: (error) => {console.error(error);}
+      });
+
+      this.messagesService.getBookOrders().subscribe({
+        next: (bookOrders: OrderBook) => {
+          console.log(bookOrders);
+        }
+      });
+
+      this.messagesService.getLatestPrices().subscribe({
+        next: (latestPrices: LatestPrices) => {
+          console.log(latestPrices);
+        }
       });
   }
 
