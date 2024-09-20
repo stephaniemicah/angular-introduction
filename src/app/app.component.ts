@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { MessagesService } from './services/messages.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Post } from './interfaces/posts.interface';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class AppComponent implements OnInit {
   messages: string[] = [];
-  posts: any[] = [];
+  posts: Post[] = [];
 
   constructor(private messagesService: MessagesService) {
     this.messages = messagesService.getMessages();
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
   //  );
 
       this.messagesService.getPosts().subscribe({
-        next: (response) => {this.posts = response;},
+        next: (response: Post[]) => {this.posts = response;},
         error: (error) => {console.error(error);}
       });
   }
