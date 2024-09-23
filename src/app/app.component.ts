@@ -1,26 +1,62 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent  {
-  user: { name: string; email: string } = {
-    name: '',
-    email: '',
-  };
+  userForm!: FormGroup;
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email
+        ],
+      ],
+      address: this.formBuilder.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+      }),
+      phoneNumbers: this.formBuilder.array([
+        this.formBuilder.control('', [
+          Validators.required,
+          Validators.pattern(/^\d{10}$/),
+        ])
+      ])
+    });
+  }
 
-  submitForm(form: NgForm) {
-    if (form.valid) {
-      console.log(form.value, this.user);
+  get phoneNumbers() {
+    return this.userForm.get('phoneNumbers') as FormArray;
+  }
+
+  addPhoneNumber(){
+    this.phoneNumbers.push(
+      this.formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(/^\d{10}$/)
+      ])
+    )
+  }
+
+  removePhoneNumber(index: number) {
+    this.phoneNumbers.removeAt(index);
+  }
+
+  submitForm() {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value);
     }
   }
 
