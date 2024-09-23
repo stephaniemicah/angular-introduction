@@ -1,15 +1,15 @@
 {
   "languages": [
-    "Java",
-    "C#",
-    "Python"
+    { "id": 1, "name": "Java" },
+    { "id": 2, "name": "C#" },
+    { "id": 3, "name": "Python" }
   ],
   "student": {
     "id": 123,
     "name": "John",
     "phone": "123456",
     "age": 21,
-    "languages": ["Java", "C#", "Python"]
+    "languages": [1, 2, 3]  
   },
   "orderbook": {
     "BuyOrders": [
