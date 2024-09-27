@@ -1,45 +1,35 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { NoteFormComponent } from './components/note-form/note-form.component';
+import { NoteListComponent } from './components/note-list/note-list.component';
+import { NoteService } from './services/note.service';
+import { Note } from './interfaces/note';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet,
+            FormsModule,
+            CommonModule,
+            HttpClientModule,
+            NoteFormComponent,
+            NoteListComponent,
+            ReactiveFormsModule,
+
+  ],
+  providers: [NoteService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
-  title: string = '1.Introduction';
-  myBtn: string = 'My Button';
-  counter: number = 0;
+  selectedNote!: Note;
 
-  //attribute binding
-  isDisabled: boolean = false;
-  angularImage: string = '../assets/angular16.jpg';
+  selectNote(note: Note) {
+    this.selectedNote = note;
 
-  //property binding
-  bgColor: string = 'red';
-  titleColor: string = 'white';
-  description: string = 'font-size: 30px; color: lightblue';
-
-  //event binding
-  incrementCounter() {
-    this.counter++;
   }
-
-  //class binding
-  redText: boolean = true;
-
-  //two-way data binding
-  inputText: string = 'Initial value';
-
-  //ngClass
-  message: string = 'This is a dangerous message';
-  classes: string = 'danger text-size';
-
-  //ngStyle
-  selectedColor: string = 'white';
 }

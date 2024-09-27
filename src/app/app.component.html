@@ -1,24 +1,5 @@
-Hello {{ title}}!
-
-<button type="button" [disabled]="isDisabled">{{ myBtn }}</button>
-<img alt="angular" width="100" height="100" [src]="angularImage"/>
-
-<div [style.backgroundColor]="bgColor">
-  <h2 [style.color]="titleColor">Title</h2>
-  <p [style]="description">Description</p>
-</div>
-
-<h2 [class.textColor]="redText">Title</h2>
-<button (click)="incrementCounter()">Increment</button>
-<p>Counter: {{ counter }}</p>
-
-<input [(ngModel)]="inputText" placeholder="Enter text"/>
-<p>You entered: {{ inputText }}</p>
-
-<div [ngClass]="classes">
-  {{ message }}
-</div>
-
-<div class="color-box" [ngStyle]="{ color: selectedColor }">
-  Box
+<div class="app-container">
+  <h1>Note Taking App</h1>
+    <app-note-form [selectedNote]="selectedNote"></app-note-form>
+    <app-note-list (selectedNote)="selectNote($event)"></app-note-list>
 </div>
