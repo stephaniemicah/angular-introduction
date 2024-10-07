@@ -1,45 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, HttpClientModule, FormsModule, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-
 export class AppComponent {
-  title: string = '1.Introduction';
-  myBtn: string = 'My Button';
-  counter: number = 0;
-
-  //attribute binding
-  isDisabled: boolean = false;
-  angularImage: string = '../assets/angular16.jpg';
-
-  //property binding
-  bgColor: string = 'red';
-  titleColor: string = 'white';
-  description: string = 'font-size: 30px; color: lightblue';
-
-  //event binding
-  incrementCounter() {
-    this.counter++;
+  constructor(private translateService: TranslateService) {
+    const userLang = navigator.language || 'en';
+    const languageCode = userLang.split('-')[0];
+    this.translateService.setDefaultLang(languageCode);
+    this.translateService.use(languageCode);
   }
-
-  //class binding
-  redText: boolean = true;
-
-  //two-way data binding
-  inputText: string = 'Initial value';
-
-  //ngClass
-  message: string = 'This is a dangerous message';
-  classes: string = 'danger text-size';
-
-  //ngStyle
-  selectedColor: string = 'white';
 }

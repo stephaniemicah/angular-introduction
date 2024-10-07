@@ -6,6 +6,13 @@
     "angular-intro": {
       "projectType": "application",
       "schematics": {},
+      "i18n":{
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/assets/i18n/fr.json",
+          "es": "src/assets/i18n/es.json"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,7 +24,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -75,7 +83,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
