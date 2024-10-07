@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoteFormComponent } from './note-form.component';
+import { AboutSponsorsComponent } from './about-sponsors.component';
 
-describe('NoteFormComponent', () => {
-  let component: NoteFormComponent;
-  let fixture: ComponentFixture<NoteFormComponent>;
+describe('AboutSponsorsComponent', () => {
+  let component: AboutSponsorsComponent;
+  let fixture: ComponentFixture<AboutSponsorsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoteFormComponent]
+      imports: [AboutSponsorsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NoteFormComponent);
+    fixture = TestBed.createComponent(AboutSponsorsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

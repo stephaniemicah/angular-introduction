@@ -1,35 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
-import { NoteFormComponent } from './components/note-form/note-form.component';
-import { NoteListComponent } from './components/note-list/note-list.component';
-import { NoteService } from './services/note.service';
-import { Note } from './interfaces/note';
+import { RouterLink, RouterOutlet, Router, RouterModule } from '@angular/router';
+import { NotesComponent } from './components/notes/notes.component';
+import { NoteComponent } from './components/note/note.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,
-            FormsModule,
-            CommonModule,
-            HttpClientModule,
-            NoteFormComponent,
-            NoteListComponent,
-            ReactiveFormsModule,
-
-  ],
-  providers: [NoteService],
+  imports: [RouterOutlet, NotesComponent, NoteComponent, RouterLink, RouterModule],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
-  selectedNote!: Note;
+  title: string = 'Routing';
 
-  selectNote(note: Note) {
-    this.selectedNote = note;
+  constructor(private router: Router) {}
 
+  navigateToNotes(): void {
+    this.router.navigate(['/notes']);
+  }
+
+  navigateToNote(id: number): void {
+    this.router.navigate(['/notes', id]);
   }
 }
